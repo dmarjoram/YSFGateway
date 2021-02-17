@@ -167,7 +167,7 @@ void CAPRSWriter::write(const unsigned char* source, const char* type, unsigned 
 	}
 
 	char output[300U];
-	::sprintf(output, "%s>APDPRS,C4FM*,qAR,%s:!%s%c/%s%c%c %s via MMDVM\r\n",
+	::sprintf(output, "%s>APDPRS,C4FM*,qAR,%s:!%s%c/%s%c%c %s via WIRESX\r\n",
 		callsign, m_callsign.c_str(),
 		lat, (fLatitude < 0.0F) ? 'S' : 'N',
 		lon, (fLongitude < 0.0F) ? 'W' : 'E',
@@ -223,12 +223,12 @@ void CAPRSWriter::sendIdFrameFixed()
 	char desc[200U];
 	if (m_txFrequency != 0U) {
 		float offset = float(int(m_rxFrequency) - int(m_txFrequency)) / 1000000.0F;
-		::sprintf(desc, "MMDVM Voice %.5LfMHz %c%.4lfMHz%s%s",
+		::sprintf(desc, "WIRESX %.5LfMHz %c%.4lfMHz%s%s",
 			(long double)(m_txFrequency) / 1000000.0F,
 			offset < 0.0F ? '-' : '+',
 			::fabs(offset), m_desc.empty() ? "" : ", ", m_desc.c_str());
 	} else {
-		::sprintf(desc, "MMDVM Voice%s%s", m_desc.empty() ? "" : ", ", m_desc.c_str());
+		::sprintf(desc, "WIREX%s%s", m_desc.empty() ? "" : ", ", m_desc.c_str());
 	}
 
 	const char* band = "4m";
@@ -317,12 +317,12 @@ void CAPRSWriter::sendIdFrameMobile()
 	char desc[200U];
 	if (m_txFrequency != 0U) {
 		float offset = float(int(m_rxFrequency) - int(m_txFrequency)) / 1000000.0F;
-		::sprintf(desc, "MMDVM Voice %.5LfMHz %c%.4lfMHz%s%s",
+		::sprintf(desc, "WIRESX %.5LfMHz %c%.4lfMHz%s%s",
 			(long double)(m_txFrequency) / 1000000.0F,
 			offset < 0.0F ? '-' : '+',
 			::fabs(offset), m_desc.empty() ? "" : ", ", m_desc.c_str());
 	} else {
-		::sprintf(desc, "MMDVM Voice%s%s", m_desc.empty() ? "" : ", ", m_desc.c_str());
+		::sprintf(desc, "WIRESX%s%s", m_desc.empty() ? "" : ", ", m_desc.c_str());
 	}
 
 	const char* band = "4m";
