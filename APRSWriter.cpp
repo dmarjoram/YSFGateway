@@ -222,9 +222,9 @@ void CAPRSWriter::sendIdFrameFixed()
 
 	char desc[200U];
 	if (m_txFrequency != 0U) {
-		float offset = float(int(m_rxFrequency) - int(m_txFrequency)) / 1000000.0F;
+		float offset = float(int(m_txFrequency) - int(m_rxFrequency)) / 1000000.0F;
 		::sprintf(desc, "WIRESX %.5LfMHz %c%.4lfMHz%s%s",
-			(long double)(m_txFrequency) / 1000000.0F,
+			(long double)(m_rxFrequency) / 1000000.0F,
 			offset < 0.0F ? '-' : '+',
 			::fabs(offset), m_desc.empty() ? "" : ", ", m_desc.c_str());
 	} else {
